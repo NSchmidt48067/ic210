@@ -1,0 +1,14 @@
+/*********************************************
+Filename: hw05.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Determining a Leap Year
+ *********************************************/
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  //Declare Variables
+
+  return 0;
+}

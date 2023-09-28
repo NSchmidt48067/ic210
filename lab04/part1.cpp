@@ -1,0 +1,45 @@
+/*********************************************
+Filename: part1.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Lab 4 part1
+ *********************************************/
+#include <iostream>
+#include <cmath>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+  //Declare Variables
+  double Ctemp, Ftemp = 0, ttemp, atemp;
+  int n = 0;
+  string filename, garbage;
+
+  //Enter File Name
+  cin >> filename;
+  ifstream file(filename);
+
+  //The While loop to find average temperature
+  file >> garbage;
+  file >> garbage;
+  if (file){ //If the file does exist, it will go to the loop
+    while (file >> garbage >> garbage >> Ctemp) {
+    Ftemp = (9.0/5.0)*Ctemp + 32;
+    ttemp = ttemp + Ftemp;
+    n++;
+  }
+    
+  }
+  
+  else {// If the file doesn't exist, the program will end
+    cout << "Could not open file '" << filename << "'" << endl;
+    return 1;
+  }
+
+  //Print out the average temperature
+  atemp = ttemp/n;
+  cout << "file: " << filename << endl << "ave: " << atemp << endl;
+  
+  
+  return 0;
+}

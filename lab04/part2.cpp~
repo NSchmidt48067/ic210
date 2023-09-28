@@ -1,0 +1,62 @@
+/*********************************************
+Filename: part1.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Lab 4 part2
+ *********************************************/
+#include <iostream>
+#include <cmath>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+  //Declare Variables
+  double Ctemp, Ftemp = 0, ttemp, atemp, min = 100, max = -100;
+  int n = 0;
+  string filename, garbage, date, datemin, datemax;
+
+  //Enter File Name
+  cin >> filename;
+  ifstream file(filename);
+
+  //The While loop to find average temperature
+  file >> garbage;
+  file >> garbage;
+  if (file){ //If the file does exist, it will go to the loop
+  while (file) {
+    file >> date;
+    file >> garbage;
+    file >> Ctemp;
+
+    Ftemp = 9.0/5.0; //Fahrenheit and avg Calculation
+    Ftemp = Ftemp*Ctemp;
+    Ftemp = Ftemp + 32;
+    ttemp = ttemp + Ftemp;
+    n++;
+
+    if (Ftemp < min){
+      min = Ftemp;
+      datemin = date;
+    }
+
+    if (Ftemp > max){
+      max = Ftemp;
+      datemax = date;
+    }
+  }
+    
+  }
+  
+  else {// If the file doesn't exist, the program will end
+    cout << "Could not open file '" << filename << "'" << endl;
+    return 1;
+  }
+
+  //Print out the average temperature
+  atemp = ttemp/n;
+  cout << "file: " << filename << endl << "ave: " << atemp << endl;
+  cout << "min: " << min << " on " << datemin << endl;
+  cout << "max: " << max << " on " << datemax << endl;  
+  
+  return 0;
+}

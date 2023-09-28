@@ -1,0 +1,61 @@
+/*********************************************
+Filename: p3.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Binary to Decimal P3
+ *********************************************/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+  //Declare Variables
+  int a0, a1, a2, a3, b0, b1, b2, b3, c0, c1, c2, c3;
+  char a, b, c;
+ 
+  //Read the permission numbers
+  cout << "Permissions: ";
+  cin >> a >> b >> c;
+  cout << endl;
+  
+  //Determine binary number of a
+  a0 = a - '0';
+ 
+  a1 = a0%2;
+  a0 = a0/2;
+  a2 = a0%2;
+  a0 = a0/2;
+  a3 = a0%2;
+
+   //Determine binary number of b
+  b0 = b - '0';
+ 
+  b1 = b0%2;
+  b0 = b0/2;
+  b2 = b0%2;
+  b0 = b0/2;
+  b3 = b0%2;
+
+   //Determine binary number of c
+  c0 = c - '0';
+ 
+  c1 = c0%2;
+  c0 = c0/2;
+  c2 = c0%2;
+  c0 = c0/2;
+  c3 = c0%2;
+ 
+
+
+  //Print Answer
+
+  cout << "User: " << endl << "read      " << a3 << endl << "write     " << a2 << endl << "execute   " << a1 << endl << endl;
+
+  cout << "Group: " << endl << "read      " << b3 << endl << "write     " << b2 << endl << "execute   " << b1 << endl << endl;
+
+  cout << "Other: " << endl << "read      " << c3 << endl << "write     " << c2 << endl << "execute   " << c1 << endl;
+ 
+  return 0;
+
+}

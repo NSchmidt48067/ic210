@@ -1,0 +1,33 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Making Rectangles
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+  //Declare Variables
+  int row, col, num;
+  ifstream fin("input.txt");
+  ofstream fout ("output.html");
+
+  //Read in from input file and print table to fout
+  fin >> row >> col;
+  fout << "<table border=2>" << endl;
+  
+  for (int i = 0; i < row; i++){
+    fout << "<tr>";
+    
+    for (int n = 0; n < col; n++){
+      fin >> num;
+      fout << "<td>" << num << "</td>";
+    }
+    fout << "</tr>" << endl;
+  }
+  fout << "</table>";
+  
+  return 0;
+}
