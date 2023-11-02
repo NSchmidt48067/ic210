@@ -1,0 +1,48 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+GCD
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int gcd(int x, int y);
+
+int main() {
+  //Declare Variables
+  char g;
+  int n1, n2, val;
+  do{
+    cin >> n1 >> g >> n2 >> g;
+    cout << n1 << endl << n2 << endl;
+    val = gcd(n1, n2);
+    if (val == 1){
+      cout << n1 << "/" << n2 << " is in lowest terms!" << endl;
+    }
+    
+  }while(g != ';');
+
+  
+  return 0;
+}
+
+int gcd(int x, int y){
+  int rx, ry;
+  for (int i = 2; i < x && i < y;i++){
+    rx = x % i;
+    ry = y % i;
+
+    if (rx == 0 && ry == 0){
+      break;
+    }
+    else if (rx == ry){
+
+    }
+    else {
+      return 1;
+    }
+  }
+  return 0;
+}

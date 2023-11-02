@@ -1,0 +1,33 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+
+
+int main() {
+  //Declare Variables
+  int n = readN();
+  int* A = readData(n);
+
+  string cmd;
+  cout << "cmd: ";
+  while( (cin >> cmd) && cmd != "quit" ) 
+  {
+    if( cmd == "show" )
+      show(A, n);
+    else if ( cmd == "swap" )
+      swap(A, n);
+
+    cout << "cmd: ";
+  }
+
+  delete[] A;
+
+  return 0;
+}

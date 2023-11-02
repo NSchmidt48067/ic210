@@ -1,0 +1,51 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+//Declaring functions
+void get_names(string* candidate1, string* candidate2);
+void update_counts(string selection, string candidate1, int* count1, string candidate2, int* count2);
+void display_results(string candidate1, int count1, string candidate2, int count2);
+  
+int main() {
+  //Declare Variables
+  string candidate1;
+  string candidate2;
+
+  get_names(&candidate1, &candidate2);
+
+  int count1 = 0;
+  int count2 = 0;
+
+  cout << "Enter votes, ending with \"END\":" << endl;
+
+  string selection;
+  cin >> selection;
+  while (update_counts(selection, candidate1, &count1, candidate2, &count2)) 
+  {
+    cin >> selection;
+  }
+
+  display_results(candidate1, count1, candidate2, count2);
+
+  return 0;
+}
+
+void get_names(string* candidate1, string* candidate2){
+
+}
+
+
+void update_counts(string selection, string candidate1, int* count1, string candidate2, int* count2){
+
+}
+
+void display_results(string candidate1, int count1, string candidate2, int count2){
+
+}

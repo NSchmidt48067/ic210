@@ -1,0 +1,71 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Making Rectangles
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int* read(int N);
+bool isInOrder(int* A, int N);
+void print(int* A, int N);
+
+int main() {
+  //Declare Variables
+  char c;
+  int N;
+  cin >> c >> c >> N;
+
+  int* A = read(N);
+  print(A,N);
+  if (isInOrder(A,N))
+    cout << "Is in order!" << endl;
+  else
+    cout << "Is not in order!" << endl;
+  delete [] A;
+  return 0;
+}
+
+int* read(int N){//readData reads in the information for the array and returns the array
+  char g;
+  cin >> g;
+
+  int* A = new int[N];
+  for (int i = 0;i < N; i++){
+    cin >> A[i];
+  }
+  return A;
+}
+
+void print(int* A, int N){//show prints out the stars correlating to the number in the array
+  char l = 64;
+
+  for (int i = 0; i < N;i++){
+    cout << " "  << A[i];
+  }
+  cout << endl;
+  for (int i = 0; i < (N * 2 + 1);i++){
+    cout << "-";
+  }
+  cout << endl;
+  for (int i = 0; i < N;i++){
+    l = l + 1;
+    cout << l << " ";
+  }
+  cout << endl;
+}
+
+bool isInOrder(int* A, int N){
+  int x = 0;
+
+  for(int i = 0;i < N;i++){
+
+    if (x > A[i]){
+      return false;
+    }
+    x = A[i];
+  }
+  return true;
+}

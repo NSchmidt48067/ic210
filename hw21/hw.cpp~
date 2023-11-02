@@ -1,0 +1,37 @@
+/*********************************************
+Filename: hw.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+Voting
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+//Declaring functions
+void print_negatives(double* A, int N);
+  
+int main() {
+  //Declare Variables
+  int N=0;
+
+   cin >> N;
+       double* A = new double[N];
+
+   for(int i=0; i<N; i++)
+     cin >> A[N];
+
+   cout << "Negatives in reverse" << endl;
+
+    print_negatives(A,N);
+
+   delete [] A;
+
+  return 0;
+}
+
+void print_negatives(double* A, int N)
+ {
+   for(int i = N; i >= 0; i--)
+     cout << A[i] << endl;
+ }

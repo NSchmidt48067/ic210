@@ -1,0 +1,263 @@
+/**********************************************
+Filename: p5.cpp
+Author: MIDN Nathaniel Schmidt (265646)
+
+ *********************************************/
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
+int* hit(int* hand);
+int* createdeck(int num);
+void print(int* phand, int* dhand, int p, int d);
+int* deal(int* hand, int* deck, int turn, int num);
+int* shuffle(int* deck, int seed, int num);
+
+int main() {
+ //Declare Variables
+  int num = 0, p = 0, d = 0;//Counters for deck, player and dealer respectively
+  int seed = 0;
+  char com;
+  int* deck;
+  deck = new int[52];//Create the array that holds the deck
+  int* phand;
+  phand = new int[52];//Array for player's hand
+  int* dhand;
+  dhand = new int[52];//Arry for dealer's hand
+
+  cout << "Shuffle: [n | u <seed>]: ";//Gets a seed for random numbers
+  cin >> com;
+
+  deck = createdeck(num);//Creates the deck
+  
+  if (com == 'u'){//Determines the command given to shuffle the deck or not
+    cin >> seed;
+    deck = shuffle(deck, seed, num);
+  }
+  
+  cout << endl;
+  
+  for (int i = 0;i < 2;i++){//crates and prints out the first two cards to the dealer and player
+    phand = deal(phand, deck, p, num);
+    num++;//num keeps track of how many cards have been dealt out
+    p++;//p keeps track of how many cards are in the player's hand
+
+    dhand = deal(dhand, deck, d, num);
+    num++;//num keeps track of how many cards have been dealt out
+    d++;//d keeps track of how many cards are in the dealer's hand
+  }
+  
+  print(phand, dhand, p, d);//Prints out the cards
+
+  for (int i = 1; i <= 3;i++){//Controls the rounds played
+    cout << endl << "Round " << i << " Player's turn" << endl;//Player turn
+    cout << "hit or stand ? [h/s] ";
+    cin >> com;
+    cout << endl;
+    
+    if (com == 'h'){//Determines the command given by the user
+      phand = deal(phand, deck, p, num);
+      p++;
+      num++;
+    }
+
+    print(phand, dhand, p, d);//Prints out the cards
+    
+    cout << endl  << "Round " << i << " Dealer's turn" << endl;//Dealer turn
+    cout << "hit or stand ? [h/s] ";
+    cin >> com;
+
+    if (com == 'h'){//Determines the command given by the user
+      dhand = deal(dhand, deck, d, num);
+      d++;
+      num++;
+    }
+    
+    print(phand, dhand, p, d);//Prints out the cards
+  }
+
+    
+  return 0;
+}
+
+int* createdeck(int num){//Creates a deck in order
+  int* deck = new int[52];    
+  
+  for (int n = 100; n <= 400; n = n + 100){//Loop to determine the suit
+    
+    for (int i = 2; i <= 14; i++){//Loop to determine the card value
+      deck[num] = i + n;
+      num++;
+    }
+  }
+ 
+  return deck;
+}
+
+void print(int* phand, int* dhand, int p, int d){//Prints out the hand entered
+  string clubs = "\u2663";//Creates strings for the suits
+  string diamonds = "\u2666";
+  string hearts = "\u2665";
+  string spades = "\u2660";
+  int suit, val, big;
+  char face;
+
+  if (p > d){
+    big = p;
+  }
+  else{
+    big = d;
+  }
+
+  cout << " Player Dealer" << endl;
+  for (int i = 0; i < big;i++){//Loop to run through until the number of player turns is up
+
+    //PLAYER
+    suit = phand[i] % 100;//Determines suit
+
+    if (phand[i] == 0){
+      val = 0;
+    }
+    else if (phand[i] < 150){
+	 val = phand[i] - 100;
+    }
+    else if (phand[i] < 250){
+	 val = phand[i] - 200;
+    }
+       else if (phand[i] < 350){
+	 val = phand[i] - 300;
+    }
+       else {
+	 val = phand[i] - 400;
+    }
+    
+    if (val != 0){
+    
+    if (val == 11){//if statements determing if the card is greater than 10 and thus needs a letter to represent it
+      face = 'J';
+    }
+    else if (val == 12){
+      face = 'Q';
+    }
+    else if (val == 13){
+      face = 'K';
+    }
+    else if (val == 14){
+      face = 'A';
+    }
+
+    cout << "| ";//Start of printing
+    if (val == 10){//If statement to determine whether to print a space, 10, or letter
+      cout << val;
+    }
+    else if (val < 10){
+      cout << " " << val;
+    }
+    else {
+      cout << face;
+    }
+    
+    if (suit == 1){//If statement that prints out the suit
+      cout << clubs;
+    }
+    else if (suit == 2){
+      cout << diamonds;
+    }
+    else if (suit == 3){
+      cout << hearts;
+    }
+    else {
+      cout << spades;
+    }
+    }
+    else{
+      cout << "|    ";
+    }
+
+    //DEALER
+    
+
+    
+      suit = dhand[i] % 100;//Determines suit
+      if (dhand[i] == 0){
+	val = 0;
+      }
+      else if (dhand[i] < 150){
+	val = dhand[i] - 100;
+      }
+      else if (dhand[i] < 250){
+	val = dhand[i] - 200;
+      }
+      else if (dhand[i] < 350){
+	val = dhand[i] - 300;
+      }
+      else {
+	val = dhand[i] - 400;
+      }
+      
+      if(dhand[i] != 0){//If statement that determines if there is a value for that hand
+	if (val == 11){//if statements determing if the card is greater than 10 and thus needs a letter to represent it
+	  face = 'J';
+	}
+	else if (val == 12){
+	  face = 'Q';
+	}
+	else if (val == 13){
+	  face = 'K';
+	}
+	else if (val == 14){
+	  face = 'A';
+      }
+      
+      cout << "  | ";//Start of printing
+
+      if (val == 10){//If statement to determine whether to print a space, 10, or letter
+	cout << val;
+      }
+      else if (val < 10){
+	cout << " " << val;
+      }
+      else {
+	cout << " " << face;
+      }
+      
+      if (suit == 1){//If statement that prints out the suit
+	cout << clubs;
+      }
+      else if (suit == 2){
+	cout << diamonds;
+      }
+      else if (suit == 3){
+	cout << hearts;
+      }
+      else {
+	cout << spades;
+      }
+      
+      cout << "  |";
+    }
+    else{
+      cout << "      |";
+    }
+    cout << endl;
+  }
+
+  
+}
+
+int* deal(int* hand, int* deck, int turn, int num){//Deals out a new card to a hand
+  hand[turn] = deck[num];
+  return hand;
+}
+
+int* shuffle(int* deck, int seed, int num){//Shuffles the deck
+  srand(seed);
+  for (int i = 0; i < 52;i++){
+    int rando;
+    rando = rand() % 52;
+    swap(deck[i], deck[rando]);//Swaps the cards for a random card
+  }
+  return deck;
+}
